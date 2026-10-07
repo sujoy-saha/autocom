@@ -1,0 +1,44 @@
+## Render Blueprint for the AutoCom backend.
+##
+## No Docker: Render's native Node runtime builds and runs this service
+## directly from source (npm install + tsc), matching the "no Docker for
+## local code" constraint used throughout this project.
+##
+## Usage: https://dashboard.render.com/blueprints -> "New Blueprint
+## Instance" -> point at this repo. Render reads this file automatically.
+## Secret values (marked sync: false below) must be filled in the Render
+## dashboard after the service is created -- they are intentionally not
+## committed here.
+services:
+  - type: web
+    name: autocom-backend
+    runtime: node
+    plan: free
+    # Root of the whole npm-workspaces monorepo (not backend/) -- npm
+    # workspaces hoist shared deps into the repo-root node_modules, so
+    # `npm install` has to run from here, not from inside backend/.
+    rootDir: .
+    buildCommand: npm install && npm run build --workspace backend
+    startCommand: npm run start --workspace backend
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.14.9
+      - key: PORT
+        value: 4000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: NEBIUS_BASE_URL
+        value: https://api.studio.nebius.com/v1
+      - key: NEBIUS_API_KEY
+        sync: false
+      - key: NEBIUS_MODEL
+        value: nvidia/Nemotron-3-Ultra-550b-a55b
+      - key: APPROVAL_THRESHOLD
+        value: "500"
+      - key: ALLOWED_ORIGINS
+        # Set this to your deployed Vercel frontend URL(s), comma-separated,
+        # e.g. https://your-app.vercel.app -- see README "Deployment".
+        sync: false

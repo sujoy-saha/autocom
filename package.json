@@ -1,0 +1,17 @@
+{
+  "name": "autocom",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Multi-agent end-to-end order management system, orchestrated with LangGraph, backed by Supabase, powered by NVIDIA Nemotron models via Nebius Token Factory.",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "test": "npm run test --workspace backend"
+  },
+  "license": "MIT"
+}

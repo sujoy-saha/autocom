@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.next/
+.env
+.env.local
+/token.txt
+*.log
+.DS_Store
+PITCH_DECK.md
+VIDEO_SCRIPT.md
