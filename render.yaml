@@ -36,6 +36,14 @@ services:
         sync: false
       - key: NEBIUS_MODEL
         value: nvidia/Nemotron-3-Ultra-550b-a55b
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_TEST_PAYMENT_METHOD
+        value: pm_card_visa
+      - key: STRIPE_DECLINE_PAYMENT_METHOD
+        value: pm_card_chargeDeclined
       - key: APPROVAL_THRESHOLD
         value: "500"
       - key: ALLOWED_ORIGINS
