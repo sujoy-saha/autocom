@@ -23,7 +23,7 @@ services:
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
-        value: 20.14.9
+        value: 20.18.1
       - key: PORT
         value: 4000
       - key: SUPABASE_URL
